@@ -1,15 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Headerr from './components/Header/Header';
+import NavbarL from './components/NavbarL/NavbarL';
+import Content from './components/Content/Content';
+import NavbarR from './components/NavbarR/NavbarR';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      <div className='wrapper'>
+      <Headerr />
+
+        <div className="_conteiner">
+          <NavbarL />
+          <Content />
+          <NavbarR />
+        </div>
+      </div>
     </div>
   );
 }
