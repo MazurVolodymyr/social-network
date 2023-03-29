@@ -1,5 +1,11 @@
 .navbarL_style{
     width: 280px;
     height: 800px;
-    background-color: bisque;
+    background-color: rgb(213, 208, 201);
+    margin-right: 30px;
+}
+.red_block{
+    width: 100%;
+    height: 150px;
+    background-color: #E44D3A;
 }
