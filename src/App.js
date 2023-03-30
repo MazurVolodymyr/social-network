@@ -1,24 +1,33 @@
 import './App.css';
 import Header from './components/Header/Header';
 import NavbarL from './components/NavbarL/NavbarL';
-import Content from './components/Content/Content';
-import NavbarR from './components/NavbarR/NavbarR';
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Content from './components/Content/Content';
+import Profiles from './components/Profiles/Profiles';
+import Messages from './components/Messages/Messages';
+import Companies from './components/Companies/Companies';
+import Projects from './components/Projects/Projects';
 
 const App = () => {
   return (
-    <div className="App">
-      <div className='wrapper'>
-      <Header />
-
-        <div className="_conteiner">
-          <NavbarL />
-          <Content />
-          <NavbarR />
-
+    <BrowserRouter>
+      <div className="App">
+        <div className='wrapper'>
+        <Header />
+          <div className="_conteiner">
+              <NavbarL />
+              <Routes>
+                <Route path='/Content' element={<Content />} />
+                <Route path='/Profiles' element={<Profiles />} />
+                <Route path='/Messages' element={<Messages />}/>
+                <Route path='/Companies' element={<Companies />} />
+                <Route path='/Projects' element={<Projects />} />
+              </Routes>
+          </div>
         </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
