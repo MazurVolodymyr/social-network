@@ -1,0 +1,30 @@
+.Messages{
+    width: 100%;
+}
+.title_of_dialogs{
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.messages_flex{
+    display: flex;
+}
+.dialogs{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.dialog_with_people{
+    font-size: 18px;
+    line-height: 44px;
+    margin-right: 100px;
+}
+
+.messages{}
+.message{
+    font-size: 18px;
+    line-height: 44px;
+    
+}

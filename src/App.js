@@ -8,7 +8,7 @@ import Profiles from './components/Profiles/Profiles';
 import Messages from './components/Messages/Messages';
 import Companies from './components/Companies/Companies';
 import Projects from './components/Projects/Projects';
-
+import Music from './components/Music/Music';
 const App = () => {
   return (
     <BrowserRouter>
@@ -23,6 +23,7 @@ const App = () => {
                 <Route path='/Messages' element={<Messages />}/>
                 <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />
+                <Route path='/Music' element={<Music />} />
               </Routes>
           </div>
         </div>

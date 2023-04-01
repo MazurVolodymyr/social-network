@@ -7,7 +7,10 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faDiagramProject } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+
+
 const Header = () =>{
     return(
         <div className={style.header_style}>
@@ -48,6 +51,12 @@ const Header = () =>{
                             <Link to="Projects" className={style.awesome_link} >
                                 <FontAwesomeIcon icon={faDiagramProject} />
                                 <p>Projects</p>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="Music" className={style.awesome_link} >
+                                <FontAwesomeIcon icon={faMusic} />
+                                <p>Music</p>
                             </Link>
                         </li>
                     </ul>
