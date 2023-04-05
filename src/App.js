@@ -9,7 +9,11 @@ import Messages from './components/Messages/Messages';
 import Companies from './components/Companies/Companies';
 import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
-const App = () => {
+
+
+
+
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className="App">
@@ -20,7 +24,9 @@ const App = () => {
               <Routes>
                 <Route path='/Content' element={<Content />} />
                 <Route path='/Profiles' element={<Profiles />} />
-                <Route path='/Messages' element={<Messages />}/>
+                <Route path='/Messages/*' element={<Messages 
+                  dialogs = {props.state.messagesPage.dialogsData} 
+                  messages = {props.state.messagesPage.messagesData} />}/>
                 <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />
                 <Route path='/Music' element={<Music />} />
