@@ -22,7 +22,10 @@ const App = (props) => {
           <div className="_conteiner">
               <NavbarL />
               <Routes>
-                <Route path='/Content' element={<Content />} />
+                <Route path='/Content' element={<Content 
+                  contentPost = {props.state.contentPage.posts}
+                  addPost = {props.addPost}
+                  />} />
                 <Route path='/Profiles' element={<Profiles />} />
                 <Route path='/Messages/*' element={<Messages 
                   dialogs = {props.state.messagesPage.dialogsData} 
