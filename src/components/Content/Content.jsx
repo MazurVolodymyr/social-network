@@ -9,16 +9,18 @@ const Content = (props) =>{
     let postRef = React.createRef();
     
     let addPost = () =>{
-        let text = postRef.current.value;
-        props.addPost(text);
-        postRef.current.value = '';
+        props.addPost();
     }
 
+    let onChangePost = () =>{
+        let text = postRef.current.value;
+        props.changePostBLL(text);
+    }
 
     return(
         <div className={style.content_style}>
             <div> 
-                <textarea ref={ postRef }></textarea>
+                <textarea ref={ postRef } value={ props.newTextPost} onChange={onChangePost}></textarea>
                 <button onClick={ addPost }>Add post</button>
                 {postsElement}
 
