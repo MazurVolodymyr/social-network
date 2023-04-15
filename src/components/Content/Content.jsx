@@ -20,9 +20,9 @@ const Content = (props) =>{
     return(
         <div className={style.content_style}>
             <div> 
-                <textarea ref={ postRef } value={ props.newTextPost} onChange={onChangePost}></textarea>
+                <textarea ref={ postRef } value={ props.newTextPost } onChange={ onChangePost }></textarea>
                 <button onClick={ addPost }>Add post</button>
-                {postsElement}
+                { postsElement }
 
             </div>
         </div>
