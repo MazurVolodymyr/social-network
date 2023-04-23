@@ -24,9 +24,8 @@ const App = (props) => {
               <Routes>
                 <Route path='/Content' element={<Content 
                   contentPost = {props.state.contentPage.posts}
-                  addPost = {props.addPost}
+                  dispatch = {props.dispatch}
                   newTextPost = {props.state.contentPage.newTextPost}
-                  changePostBLL = { props.changePostBLL }
                   />} />
                 <Route path='/Profiles' element={<Profiles />} />
                 <Route path='/Messages/*' element={<Messages 

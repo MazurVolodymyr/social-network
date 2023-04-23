@@ -2,6 +2,8 @@ import style from './Content.module.css';
 import React from 'react';
 import Post from './Post/Posts';
 
+import { addPostActionCreator, changePostBllActionCreator } from '../../redux/state';
+
 const Content = (props) =>{
     
     let postsElement = props.contentPost.map( p=> <Post message={p.post} countLikes={p.countLikes} ></Post>)
@@ -9,12 +11,15 @@ const Content = (props) =>{
     let postRef = React.createRef();
     
     let addPost = () =>{
-        props.addPost();
+        //props.addPost();
+        props.dispatch( addPostActionCreator() )
     }
 
     let onChangePost = () =>{
         let text = postRef.current.value;
-        props.changePostBLL(text);
+        //props.changePostBLL(text);
+        let action =  changePostBllActionCreator(text);
+        props.dispatch(action);
     }
 
     return(
