@@ -2,9 +2,10 @@ import style from './Content.module.css';
 import React from 'react';
 import Post from './Post/Posts';
 
-import { addPostActionCreator, changePostBllActionCreator } from '../../redux/state';
+import { addPostActionCreator, changePostBllActionCreator } from '../../redux/content-reducer';
 
 const Content = (props) =>{
+
     
     let postsElement = props.contentPost.map( p=> <Post message={p.post} countLikes={p.countLikes} ></Post>)
 

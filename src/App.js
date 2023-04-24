@@ -12,7 +12,6 @@ import Music from './components/Music/Music';
 
 
 
-
 const App = (props) => {
   return (
     <BrowserRouter>
@@ -27,10 +26,12 @@ const App = (props) => {
                   dispatch = {props.dispatch}
                   newTextPost = {props.state.contentPage.newTextPost}
                   />} />
+
                 <Route path='/Profiles' element={<Profiles />} />
                 <Route path='/Messages/*' element={<Messages 
-                  dialogs = {props.state.messagesPage.dialogsData} 
-                  messages = {props.state.messagesPage.messagesData} />}/>
+                  store = {props.store} />} />
+
+                  
                 <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />
                 <Route path='/Music' element={<Music />} />

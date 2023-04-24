@@ -1,5 +1,5 @@
-const ADD_POST = 'ADD_POST'
-const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
+import contentReducer from "./content-reducer"
+import messagesReducer from "./messages-reducer"
 
 let store = {
     _state: {
@@ -18,7 +18,9 @@ let store = {
                 { text : "F**k you"},
                 { text : "HEEEEY"},
             ],
+            newMessagesBody: '',
         },
+
         contentPage: {
             posts: [
                 { id: 1, post: "heey", countLikes: 10 },
@@ -41,35 +43,12 @@ let store = {
     },
 
     dispatch(action){
-        if (action.type === ADD_POST){
-            let newPost = {
-                id: 2,
-                post: this._state.contentPage.newTextPost,
-                countLikes: 0,
-            };
-            this._state.contentPage.posts.push(newPost);
-            this._state.contentPage.newTextPost = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === CHANGE_POST_BLL){
-            this._state.contentPage.newTextPost = action.newText;
-            this._callSubscriber(this._state);
-        }
+
+        this._state.contentPage = contentReducer(this._state.contentPage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+
+        this._callSubscriber(this._state);
     },
-
-
-
-}
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST,
-    }
 }
 
-export const changePostBllActionCreator = (text) => {
-
-    return {
-        type: CHANGE_POST_BLL,
-        newText: text,
-    }
-}
 export default store;

@@ -22,7 +22,9 @@
     margin-right: 100px;
 }
 
-.messages{}
+.messages textarea{
+    border: 1px solid black;
+}
 .message{
     font-size: 18px;
     line-height: 44px;
