@@ -1,7 +1,16 @@
 const ADD_POST = 'ADD_POST'
 const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
 
-const contentReducer = (state, action) =>{
+let initialState = {
+    posts: [
+        { id: 1, post: "heey", countLikes: 10 },
+        { id: 2, post: "heey", countLikes: 11},
+        { id: 3, post: "wrrrr", countLikes: 6},
+    ],
+    newTextPost: ' ',
+}
+
+const contentReducer = (state = initialState, action) =>{
 
     switch(action.type){
         case ADD_POST:

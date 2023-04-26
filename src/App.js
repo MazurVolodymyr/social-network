@@ -3,9 +3,9 @@ import Header from './components/Header/Header';
 import NavbarL from './components/NavbarL/NavbarL';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Content from './components/Content/Content';
+import ContentConteiner from './components/Content/ContentContainer';
 import Profiles from './components/Profiles/Profiles';
-import Messages from './components/Messages/Messages';
+import MessagesContainer from './components/Messages/MessagesContainer';
 import Companies from './components/Companies/Companies';
 import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
@@ -21,16 +21,14 @@ const App = (props) => {
           <div className="_conteiner">
               <NavbarL />
               <Routes>
-                <Route path='/Content' element={<Content 
-                  contentPost = {props.state.contentPage.posts}
-                  dispatch = {props.dispatch}
-                  newTextPost = {props.state.contentPage.newTextPost}
+                <Route path='/Content' element={<ContentConteiner 
+                  store = {props.store}
                   />} />
 
                 <Route path='/Profiles' element={<Profiles />} />
-                <Route path='/Messages/*' element={<Messages 
-                  store = {props.store} />} />
-
+                <Route path='/Messages/*' element={<MessagesContainer 
+                  store = {props.store} 
+                  />} />
                   
                 <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />

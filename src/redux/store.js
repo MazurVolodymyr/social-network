@@ -43,10 +43,8 @@ let store = {
     },
 
     dispatch(action){
-
         this._state.contentPage = contentReducer(this._state.contentPage, action);
         this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
-
         this._callSubscriber(this._state);
     },
 }

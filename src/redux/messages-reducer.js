@@ -1,8 +1,25 @@
 const NEW_MESSAGE = 'NEW_MESSAGE'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
+let initialState = {
+    dialogsData: [    
+        { id : 1, name:"Vova"},
+        { id : 2, name:"Bogdan"},
+        { id : 3, name:"Oleksandr"},
+        { id : 4, name:"Den"},
+        { id : 5, name:"Mary"},
+        ],
+    messagesData: [
+        { text : "HEY"},
+        { text : "Come on man i need five million bombs"},
+        { text : "London is the capital of great Britain"},
+        { text : "F**k you"},
+        { text : "HEEEEY"},
+    ],
+    newMessagesBody: '',
+}
 
-const messagesReducer = (state, action) =>{
+const messagesReducer = (state = initialState, action) =>{
     
 
     switch(action.type){

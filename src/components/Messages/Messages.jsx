@@ -3,22 +3,21 @@ import style from './Messages.module.css';
 import Dialogitem from './Dialogitem/Dialogitem';
 import Message from './Message/Message';
 
-import { sendMessageCreator, updateNewMessagesBodyCreator } from '../../redux/messages-reducer';
-
 const Messages = (props) => {
 
-    let state = props.store.getState().messagesPage;
+    let state = props.messagesPage;
     
     let dialogsElements = state.dialogsData.map ( d => <Dialogitem id={d.id} name = {d.name} />)
     let messagesElements = state.messagesData.map (e => <Message text= {e.text} />)
     let newMessagesBody = state.newMessagesBody;
 
     let sendSMS = () =>{
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage();
     }
     let onNewMessagesChange = (e) =>{
+
         let body = e.target.value;
-        props.store.dispatch(updateNewMessagesBodyCreator(body))
+        props.updateNewMessagesBody(body);
     }
 
     return (
