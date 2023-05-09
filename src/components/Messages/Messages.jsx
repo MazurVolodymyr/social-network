@@ -7,8 +7,8 @@ const Messages = (props) => {
 
     let state = props.messagesPage;
     
-    let dialogsElements = state.dialogsData.map ( d => <Dialogitem id={d.id} name = {d.name} />)
-    let messagesElements = state.messagesData.map (e => <Message text= {e.text} />)
+    let dialogsElements = state.dialogsData.map ( d => <Dialogitem id={d.id} key={d.id} name = {d.name}  />)
+    let messagesElements = state.messagesData.map (e => <Message text= {e.text} key={e.id}/>)
     let newMessagesBody = state.newMessagesBody;
 
     let sendSMS = () =>{

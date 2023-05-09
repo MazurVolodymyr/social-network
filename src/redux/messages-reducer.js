@@ -10,27 +10,32 @@ let initialState = {
         { id : 5, name:"Mary"},
         ],
     messagesData: [
-        { text : "HEY"},
-        { text : "Come on man i need five million bombs"},
-        { text : "London is the capital of great Britain"},
-        { text : "F**k you"},
-        { text : "HEEEEY"},
+        { id: 1, text : "HEY"},
+        { id: 2, text : "Come on man i need five million bombs"},
+        { id: 3, text : "London is the capital of great Britain"},
+        { id: 4, text : "F**k you"},
+        { id: 5, text : "HEEEEY"},
     ],
     newMessagesBody: '',
 }
 
 const messagesReducer = (state = initialState, action) =>{
-    
+
 
     switch(action.type){
         case NEW_MESSAGE:
-            state.newMessagesBody = action.body;
-            return state;
+            return{
+                ...state,
+                newMessagesBody: action.body,
+            };
         case SEND_MESSAGE:
             let body = state.newMessagesBody;
-            state.newMessagesBody = '';
-            state.messagesData.push({ text : body},);
-            return state;
+            return{
+                ...state,
+                newMessagesBody: '',
+                messagesData: [...state.messagesData,{id:6, text : body}]
+            }
+
         default:
             return state;
     }

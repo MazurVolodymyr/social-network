@@ -1,33 +1,27 @@
-import React from 'react';
+
 import { addPostActionCreator, changePostBllActionCreator } from '../../redux/content-reducer';
 import Content from './Content';
-import StoreContext from '../../StoreContext';
-const ContentContainer = (props) =>{
-    
-    return(
-        <StoreContext.Consumer> 
-        { (store) =>{
-            let state = store.getState();
-            let addPost = () =>{
-                store.dispatch( addPostActionCreator() )
-            }
 
-            let onChangePost = (text) =>{
-                let action =  changePostBllActionCreator(text);
-                store.dispatch(action);
-            }
+import { connect } from 'react-redux';
 
-            
-            return <Content changePostBLL={ onChangePost } 
-            addPost = { addPost } 
-            posts = { state.contentPage.posts} 
-            newTextPost = { state.newTextPost} />
-                }
-            }
-
-        </StoreContext.Consumer>
-
-    )
+let mapStateToProps = (state) =>{
+    return {
+        posts: state.contentPage.posts,
+        newTextPost: state.contentPage.newTextPost,
+    }
 }
+let mapDispatchToProps = (dispatch) =>{
+    return{
+        changePostBLL: (text) => {
+            let action =  changePostBllActionCreator(text);
+                dispatch(action);
+        },
+        addPost: () =>{
+            dispatch( addPostActionCreator() )
+        },
+    }
+}
+
+const ContentContainer = connect(mapStateToProps, mapDispatchToProps)(Content)
 
 export default ContentContainer;

@@ -13,18 +13,25 @@ let initialState = {
 const contentReducer = (state = initialState, action) =>{
 
     switch(action.type){
-        case ADD_POST:
+        case ADD_POST:{
             let newPost = {
                 id: 2,
                 post: state.newTextPost,
                 countLikes: 0,
             };
-            state.posts.push(newPost);
-            state.newTextPost = '';
-            return state;
-        case CHANGE_POST_BLL: 
-            state.newTextPost = action.newText;
-            return state;
+
+            return{
+                ...state,
+                posts: [...state.posts, newPost],
+                newTextPost: '',
+            }
+        }
+        case CHANGE_POST_BLL: {
+            return{
+                ...state,
+                newTextPost: action.newText,
+            }
+        }
         default:
             return state;
     }

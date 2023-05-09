@@ -5,23 +5,26 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import store from './redux/redux-store'
-import StoreContext from './StoreContext';
+
+import { Provider } from 'react-redux';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (state) => {
-  root.render(
-    <React.StrictMode>
-      <StoreContext.Provider value={store}> 
-        <App />
-      </StoreContext.Provider>
-  </React.StrictMode>
-    );
-};
-rerenderEntireTree(store.getState());
+root.render(
+  <React.StrictMode>
+    <Provider store={store}> 
+      <App />
+    </Provider>
+</React.StrictMode>
+);
 
-store.subscribe( () => {
-    let state = store.getState();
-    rerenderEntireTree(state);
-  });
 
 reportWebVitals();
+
+
+
+
+
+
+
