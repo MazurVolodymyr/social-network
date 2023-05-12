@@ -9,7 +9,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
+import { faPersonRifle } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () =>{
     return(
@@ -57,6 +57,12 @@ const Header = () =>{
                             <Link to="Music" className={style.awesome_link} >
                                 <FontAwesomeIcon icon={faMusic} />
                                 <p>Music</p>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="Users" className={style.awesome_link} >
+                            <FontAwesomeIcon icon={faPersonRifle} />
+                                <p>People</p>
                             </Link>
                         </li>
                     </ul>

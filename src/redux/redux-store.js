@@ -1,11 +1,13 @@
 import { combineReducers, createStore } from "redux";
 import contentReducer from "./content-reducer"
 import messagesReducer from "./messages-reducer"
+import usersReducer from "./users-reducer";
 
 
 let reducers = combineReducers({
     messagesPage: messagesReducer ,
-    contentPage: contentReducer
+    contentPage: contentReducer,
+    usersPage: usersReducer,
 })
 
 let store = createStore(reducers);

@@ -9,7 +9,7 @@ import MessagesContainer from './components/Messages/MessagesContainer';
 import Companies from './components/Companies/Companies';
 import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
-
+import UsersContainer from './components/Users/UsersContainer';
 
 
 const App = (props) => {
@@ -33,6 +33,7 @@ const App = (props) => {
                 <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />
                 <Route path='/Music' element={<Music />} />
+                <Route path='/Users' element={<UsersContainer />} />
               </Routes>
           </div>
         </div>
