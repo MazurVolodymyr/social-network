@@ -1,0 +1,9 @@
+.selectedPage{
+    font-weight:700;
+
+}
+span{
+    cursor: pointer;
+    letter-spacing: 15px;
+    font-size: 22px;
+}

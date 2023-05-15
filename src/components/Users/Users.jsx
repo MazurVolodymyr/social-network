@@ -1,47 +1,76 @@
+import axios from "axios";
 import React from "react";
+import userPhoto from "../../images/Users_photo_default/user.png"
+import style from "./Users.module.css"
 
-const Users = (props) =>{
+class Users extends React.Component {
 
-    if(props.users.length === 0){
-        props.setUsers([{ id: 1, photo:'https://www.meme-arsenal.com/memes/45e78ffa8f0efea3877610964d02d3fd.jpg' , followed: false, fullName: 'Vova', status: 'Hey everyone', location: {city: 'Vinnytsia', country: 'Ukraine'} },
-        { id: 2, photo:'https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec' , followed: true, fullName: 'Bogdan', status: 'I am f**k u', location: {city: 'Vinnytsia', country: 'Ukraine'} },
-        { id: 3, photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRTUZCcgPK-Gxyo5qkD8tgQi9hxSLyQnm5xQi6bv6UY6fu9BZBgLq-SEUEEy0-hUoT4Xo&usqp=CAU' , followed: true, fullName: 'Oleksandr', status: 'PIVO, VODKA, EBAT POGODKA', location: {city: 'Vinnytsia', country: 'Ukraine'} }
-            ]
-        )
+    componentDidMount(){
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response =>{
+            this.props.setUsers(response.data.items)
+            // this.props.setTotalUsersCount(response.data.totalCount)
+            //totalUsersCount зробив фіксовано тому що юзерів зараз десятки тисяч
+        })
+    }
+
+    onPageChanged = (pageNumber) =>{
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response =>{
+            this.props.setUsers(response.data.items)
+
+        })
     }
 
 
-    return(
-        <div>
-            {
-                props.users.map( u =>
-                    <div key={u.id}>
-                        <div>
-                            <img src={u.photo} alt="" />
-                            <div>
-                                {u.followed 
-                                ? <button onClick={ ()=> {props.unfollow(u.id)}}>unfollow</button>
-                                : <button onClick={ ()=> {props.follow(u.id)}}>follow</button> }
-                                
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>{u.fullName}</div>
-                                <div>{u.status}</div>
-                            </div>
-                            <div>
-                                <div>{u.location.city}</div>
-                                <div>{u.location.country}</div>
-                            </div>
-                        </div>
-                    </div>
-                )
-                
+    render () {
+
+        let pagesOfCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+
+        let pages = [];
+        for(let i = 1; i <= pagesOfCount; i++){
+            pages.push(i);
+        }
+
+        return(
+            <div>
+            <div>
+                {pages.map( p=> {
+                    return <span className={this.props.currentPage === p && style.selectedPage } onClick={()=>{
+                        this.onPageChanged(p)
+                    }}>{p}</span>
+                    })
                 }
-        </div>
-        
-    )
+            </div>
+                {
+                    this.props.users.map( u =>
+                        <div key={u.id}>
+                            <div>
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="error" />
+                                <div>
+                                    {u.followed 
+                                    ? <button onClick={ ()=> {this.props.unfollow(u.id)}}>unfollow</button>
+                                    : <button onClick={ ()=> {this.props.follow(u.id)}}>follow</button> }
+                                    
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <div>{u.name}</div>
+                                    <div>{u.status}</div>
+                                </div>
+                                <div>
+                                    <div>{'u.location.city'}</div>
+                                    <div>{'u.location.country'}</div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                    
+                    }
+            </div>
+            
+        )
+    }
 }
 
 export default Users
