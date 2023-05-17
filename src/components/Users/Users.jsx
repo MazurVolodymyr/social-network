@@ -1,6 +1,6 @@
 import userPhoto from "../../images/Users_photo_default/user.png"
 import style from "./Users.module.css"
-
+import { NavLink } from "react-router-dom";
 const Users = (props) =>{
     // в циклі for поставив значення 9 (було pagesOfCount ) тому що зараз дуже багато користувачиі, десятки тисяч і їх не зручно виводити на екран
     // let pagesOfCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -25,7 +25,9 @@ const Users = (props) =>{
                 props.users.map( u =>
                     <div key={u.id}>
                         <div>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="error" />
+                            <NavLink to={'/profile/' + u.id}>
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="error" />
+                            </NavLink>
                             <div>
                                 {u.followed 
                                 ? <button onClick={ ()=> {props.unfollow(u.id)}}>unfollow</button>

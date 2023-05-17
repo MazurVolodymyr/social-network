@@ -4,9 +4,8 @@ import NavbarL from './components/NavbarL/NavbarL';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ContentConteiner from './components/Content/ContentContainer';
-import Profiles from './components/Profiles/Profiles';
+import ProfilesContainer from './components/Profiles/ProfilesContainer';
 import MessagesContainer from './components/Messages/MessagesContainer';
-import Companies from './components/Companies/Companies';
 import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
 import UsersContainer from './components/Users/UsersContainer';
@@ -25,12 +24,18 @@ const App = (props) => {
                   store = {props.store}
                   />} />
 
-                <Route path='/Profiles' element={<Profiles />} />
+
+                <Route path='/profile' element={<ProfilesContainer />}/>
+                <Route path="/profile/:userId" element={<ProfilesContainer/>}/>
+
+                {/* <Route path="/profile/" element={<ProfilesContainer />}>
+                  <Route path=":userId" element={<ProfilesContainer />} />
+                </Route> */}
+
                 <Route path='/Messages/*' element={<MessagesContainer 
                   store = {props.store} 
                   />} />
                   
-                <Route path='/Companies' element={<Companies />} />
                 <Route path='/Projects' element={<Projects />} />
                 <Route path='/Music' element={<Music />} />
                 <Route path='/Users' element={<UsersContainer />} />

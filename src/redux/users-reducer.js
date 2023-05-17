@@ -11,7 +11,7 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     //totalUsersCount зробив фіксовано тому що юзерів зараз десятки тисяч
-    currentPage: 2,
+    currentPage: 1,
     isFetching: true,
 
 }

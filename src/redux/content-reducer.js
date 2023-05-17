@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD_POST'
 const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
     posts: [
@@ -8,6 +9,8 @@ let initialState = {
         { id: 3, post: "wrrrr", countLikes: 6},
     ],
     newTextPost: ' ',
+    profile: null,
+
 }
 
 const contentReducer = (state = initialState, action) =>{
@@ -32,6 +35,9 @@ const contentReducer = (state = initialState, action) =>{
                 newTextPost: action.newText,
             }
         }
+        case SET_USER_PROFILE: {
+            return{ ...state, profile: action.profile }
+        }
         default:
             return state;
     }
@@ -50,5 +56,14 @@ export const changePostBllActionCreator = (text) => {
     }
 }
 //
+
+export const setUserProfile = (profile) =>{
+    return{
+        type: SET_USER_PROFILE,
+        profile,
+    }
+}
+
+
 export default contentReducer;
 

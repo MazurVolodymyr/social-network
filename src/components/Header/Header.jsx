@@ -3,7 +3,6 @@ import img from '../../images/logo/japanLOGO.png'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faDiagramProject } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +29,7 @@ const Header = () =>{
                             </Link>
                         </li>
                         <li>
-                            <Link to="Profiles" className={style.awesome_link} >
+                            <Link to="profile" className={style.awesome_link} >
                                 <FontAwesomeIcon icon={faUser} />
                                 <p>Profiles</p>
                             </Link>
@@ -39,12 +38,6 @@ const Header = () =>{
                             <Link to="Messages" className={style.awesome_link} >
                                 <FontAwesomeIcon icon={faMessage} />
                                 <p>Messages</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="Companies" className={style.awesome_link} >
-                                <FontAwesomeIcon icon={faBuilding} />
-                                <p>Companies</p>
                             </Link>
                         </li>
                         <li>
