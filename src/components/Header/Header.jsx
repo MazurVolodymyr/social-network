@@ -10,6 +10,9 @@ import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { faPersonRifle } from '@fortawesome/free-solid-svg-icons';
 
+import LoginContainer from './Login/LoginContainer';
+
+
 const Header = () =>{
     return(
         <div className={style.header_style}>
@@ -58,9 +61,14 @@ const Header = () =>{
                                 <p>People</p>
                             </Link>
                         </li>
+                        <li></li>
                     </ul>
-                </nav>
+                </nav>   
+                <div>
+                    <LoginContainer></LoginContainer>
+                </div>  
             </div>
+
         </div>
 
         

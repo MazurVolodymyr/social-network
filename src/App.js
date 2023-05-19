@@ -28,10 +28,6 @@ const App = (props) => {
                 <Route path='/profile' element={<ProfilesContainer />}/>
                 <Route path="/profile/:userId" element={<ProfilesContainer/>}/>
 
-                {/* <Route path="/profile/" element={<ProfilesContainer />}>
-                  <Route path=":userId" element={<ProfilesContainer />} />
-                </Route> */}
-
                 <Route path='/Messages/*' element={<MessagesContainer 
                   store = {props.store} 
                   />} />

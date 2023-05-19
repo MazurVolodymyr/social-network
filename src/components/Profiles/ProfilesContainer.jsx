@@ -41,7 +41,7 @@ class ProfilesContainer extends React.Component  {
             <Profiles {...this.props} profile={this.props.profile} /> 
         )
     }
-}
+} 
 
 let mapStateToProps = (state) =>({
     profile: state.contentPage.profile
