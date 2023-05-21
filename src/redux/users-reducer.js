@@ -1,3 +1,4 @@
+import { userAPI } from "../API/api"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -5,6 +6,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
     users: [],
@@ -13,6 +15,7 @@ let initialState = {
     //totalUsersCount зробив фіксовано тому що юзерів зараз десятки тисяч
     currentPage: 1,
     isFetching: true,
+    followingIsProgress: [],
 
 }
 
@@ -54,14 +57,19 @@ const usersReducer = (state = initialState, action) =>{
         case TOGGLE_IS_FETCHING:
             return{ ...state, isFetching: action.isFetching}
 
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return{ ...state, followingIsProgress: action.isFetching 
+                ? [...state.followingIsProgress, action.userId]
+                : [state.followingIsProgress.filter(id => id !== action.userId)]}
+
         default:
             return state;
     }
 }
 
-export const follow = (userID) => ( {type: FOLLOW, userID} )
+export const followSuccess = (userID) => ( {type: FOLLOW, userID} )
 
-export const unfollow  = (userID) => ( {type: UNFOLLOW, userID} )
+export const unfollowSuccess  = (userID) => ( {type: UNFOLLOW, userID} )
 
 export const setUsers  = (users) => ( {type: SET_USERS, users} )
 
@@ -69,8 +77,53 @@ export const setCurrentPage  = (currentPage) => ( {type: SET_CURRENT_PAGE, curre
 
 export const setUsersTotalCount  = (totalUsersCount) => ( {type: SET_TOTAL_USERS_COUNT, count: totalUsersCount } )
 
-export const toggleIsFetching = (isFetching) =>({
-    type: TOGGLE_IS_FETCHING, isFetching })
+export const toggleIsFetching = (isFetching) =>( {type: TOGGLE_IS_FETCHING, isFetching } )
+
+export const toggleIsFollowingProgress = (isFetching, userId) =>( {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } )
+
+
+
+//! thunk
+export const getUsers = (currentPage, pageSize) =>{
+    return (dispatch) =>{
+        dispatch(toggleIsFetching(true))
+
+        userAPI.getUsers(currentPage, pageSize).then(data =>{
+            dispatch(setCurrentPage(currentPage));
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            // dispatch(setTotalUsersCount(data.totalCount))
+            //totalUsersCount зробив фіксовано тому що юзерів зараз десятки тисяч
+        })
+            
+    }
+}
+
+export const follow = (userId, pageSize) =>{
+    return (dispatch) =>{
+        dispatch(toggleIsFollowingProgress(true, userId))
+        userAPI.follow(userId).then(response=>{
+            if (response.data.resultCode === 0){
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleIsFollowingProgress(false, userId))
+        })
+            
+    }
+}
+
+export const unfollow = (userId, pageSize) =>{
+    return (dispatch) =>{
+        dispatch(toggleIsFollowingProgress(true, userId))
+        userAPI.unfollow(userId).then(response=>{
+            if (response.data.resultCode === 0){
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleIsFollowingProgress(false, userId))
+        })
+            
+    }
+}
 
 export default usersReducer;
 

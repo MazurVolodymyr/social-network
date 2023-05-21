@@ -1,6 +1,10 @@
+
+import { userAPI } from "../API/api"
+
 const ADD_POST = 'ADD_POST'
 const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+
 
 let initialState = {
     posts: [
@@ -63,6 +67,17 @@ export const setUserProfile = (profile) =>{
         profile,
     }
 }
+
+//! thunk
+
+export const setUserId = (userId) =>{
+    return (dispatch) =>{
+        userAPI.getUserId(userId).then(response =>{
+            dispatch(setUserProfile(response.data))
+        })
+    }
+}
+
 
 
 export default contentReducer;
