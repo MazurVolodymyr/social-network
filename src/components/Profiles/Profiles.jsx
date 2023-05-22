@@ -1,11 +1,11 @@
 import Preloader from "../common/Preloader/Preloader"
 
-
 const Profiles =(props) =>{
 
     if(!props.profile){
         return <Preloader />
     }
+
 
     return(
         <div>

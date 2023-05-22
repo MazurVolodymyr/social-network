@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { setUserId } from "../../redux/content-reducer";
+import { Navigate } from "react-router-dom"
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -30,6 +31,9 @@ class ProfilesContainer extends React.Component  {
     }
 
     render(){
+        if(this.props.isAuth === false) {
+            return <Navigate to={"/IsYou"}></Navigate>
+        } 
         return(
             <Profiles {...this.props} profile={this.props.profile} /> 
         )
@@ -37,7 +41,8 @@ class ProfilesContainer extends React.Component  {
 } 
 
 let mapStateToProps = (state) =>({
-    profile: state.contentPage.profile
+    profile: state.contentPage.profile,
+    isAuth: state.auth.isAuth
 })
  
 let WithURLProfilesContainer = withRouter(ProfilesContainer)

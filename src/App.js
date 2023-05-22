@@ -9,7 +9,7 @@ import MessagesContainer from './components/Messages/MessagesContainer';
 import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
 import UsersContainer from './components/Users/UsersContainer';
-
+import IsYou from './components/Header/Login/IsYou/IsYou';
 
 const App = (props) => {
   return (
@@ -35,6 +35,7 @@ const App = (props) => {
                 <Route path='/Projects' element={<Projects />} />
                 <Route path='/Music' element={<Music />} />
                 <Route path='/Users' element={<UsersContainer />} />
+                <Route path='/IsYou' element={<IsYou></IsYou>}></Route>
               </Routes>
           </div>
         </div>

@@ -7,7 +7,6 @@ const Login = (props) =>{
     return(
         <div> 
             { props.isAuth ? props.login : <Link to={'/login'}> Login </Link> }
-            
         </div>
     )
 }
