@@ -2,6 +2,7 @@ import style from './Content.module.css';
 import React from 'react';
 import Post from './Post/Posts';
 
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const Content = (props) =>{
 
@@ -23,6 +24,7 @@ const Content = (props) =>{
     return(
         <div className={style.content_style}>
             <div> 
+                <ProfileStatus></ProfileStatus>
                 <textarea ref={ postRef } value={ props.newTextPost } onChange={ onChangePost }></textarea>
                 <button onClick={ onAddPost }>Add post</button>
                 { postsElement }

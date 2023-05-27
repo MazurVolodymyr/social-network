@@ -3,8 +3,6 @@ import style from './Messages.module.css';
 import Dialogitem from './Dialogitem/Dialogitem';
 import Message from './Message/Message';
 
-import { Navigate } from 'react-router-dom';
-
 const Messages = (props) => {
 
     let state = props.messagesPage;
@@ -21,10 +19,6 @@ const Messages = (props) => {
         let body = e.target.value;
         props.updateNewMessagesBody(body);
     }
-    
-    if(props.isAuth === false) {
-        return <Navigate to={"/IsYou"}></Navigate>
-    } 
 
     return (
         <div className={style.Messages}>
