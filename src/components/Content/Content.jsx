@@ -6,7 +6,7 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const Content = (props) =>{
 
-    console.log(props);
+    
     let postsElement = props.posts.map( p=> <Post message={p.post} countLikes={p.countLikes} ></Post>)
     
     let postRef = React.createRef();

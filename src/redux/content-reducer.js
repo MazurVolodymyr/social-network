@@ -1,10 +1,11 @@
 
-import { userAPI } from "../API/api"
+import { userAPI, profileAPI } from "../API/api"
 
 const ADD_POST = 'ADD_POST'
 const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
+const SET_STATUS = 'SET_STATUS'
 
 let initialState = {
     posts: [
@@ -14,6 +15,7 @@ let initialState = {
     ],
     newTextPost: ' ',
     profile: null,
+    status: ""
 
 }
 
@@ -42,6 +44,9 @@ const contentReducer = (state = initialState, action) =>{
         case SET_USER_PROFILE: {
             return{ ...state, profile: action.profile }
         }
+        case SET_STATUS: {
+            return{ ...state, status: action.status}
+        }
         default:
             return state;
     }
@@ -61,6 +66,8 @@ export const changePostBllActionCreator = (text) => {
 }
 //
 
+export const setStatus = (status) => ({type:SET_STATUS, status})
+
 export const setUserProfile = (profile) =>{
     return{
         type: SET_USER_PROFILE,
@@ -69,11 +76,28 @@ export const setUserProfile = (profile) =>{
 }
 
 //! thunk
-
 export const setUserId = (userId) =>{
     return (dispatch) =>{
         userAPI.getUserId(userId).then(response =>{
             dispatch(setUserProfile(response.data))
+        })
+    }
+}
+
+export const getStatus = (userId) =>{
+    return (dispatch) =>{
+        profileAPI.getStatus(userId).then(response =>{
+            debugger
+            dispatch(setStatus(response.data))
+        })
+    }
+}
+export const updateStatus = (status) =>{
+    return (dispatch) =>{
+        profileAPI.updateStatus(status).then(response =>{
+            if(response.data.resultCode === 0){
+                dispatch(setStatus(status))
+            }
         })
     }
 }

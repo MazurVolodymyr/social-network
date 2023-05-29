@@ -22,8 +22,22 @@ export const userAPI = {
         return istance.delete(`follow/${userId}`)
     },
     getUserId(userId){
+        console.warn('use profileAPI object')
+        return profileAPI.getUserId(userId)
+    },
+}
+
+export const profileAPI = {
+    getUserId(userId){
         return istance.get(`profile/` + userId)
     },
+    getStatus(userId){
+        
+        return istance.get(`profile/status/` + userId)
+    },
+    updateStatus(status){
+        return istance.put(`profile/status`, {status: status})
+    }
 }
 
 export const authAPI = {

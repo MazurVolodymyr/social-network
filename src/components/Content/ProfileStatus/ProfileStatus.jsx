@@ -1,9 +1,12 @@
 import style from './ProfileStatus.module.scss'
 import React from 'react'
+
+
 class ProfileStatus extends React.Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
     activateEditMode = () => {
@@ -11,6 +14,20 @@ class ProfileStatus extends React.Component {
     }
     deactivateEditMode = () => {
         this.setState({editMode: false})
+        this.props.updateStatus(this.state.status)
+    }
+    onStatusChange =(e) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.status !== this.props.status ){
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render (){
@@ -18,16 +35,15 @@ class ProfileStatus extends React.Component {
             <div>
             { !this.state.editMode && 
                 <div>
-                    <span className={style.input} onDoubleClick={ this.activateEditMode }> {this.props.status} hey click me double</span> 
+                    <span className={style.input} onDoubleClick={ this.activateEditMode }> {this.props.status || "------"}</span> 
                 </div>
             } 
 
             { this.state.editMode && 
                 <div>
-                    <input value={this.props.status} className={style.input}  onBlur={this.deactivateEditMode} autoFocus={true}  />
+                    <input onChange={this.onStatusChange} value={this.state.status} className={style.input}  onBlur={this.deactivateEditMode} autoFocus={true}  />
                 </div>
             }
-
             </div>
 
         )
