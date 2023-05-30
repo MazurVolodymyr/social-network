@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { getStatus, setUserId, updateStatus } from "../../redux/content-reducer";
-import { withAuthRedarect } from "../../HOC/withAuthRedirect";
 import { compose } from "redux";
 
 function withRouter(Component) {
@@ -34,10 +33,8 @@ class ProfilesContainer extends React.Component  {
     }
 
     render(){
-
         return(
-            <Profiles {...this.props} profile={this.props.profile} status={this.props.status} 
-            updateStatus={this.props.updateStatus}/> 
+            <Profiles {...this.props}/> 
         )
     }
 } 
@@ -49,5 +46,7 @@ let mapStateToProps = (state) =>({
     status: state.contentPage.status
 })
 
-export default compose(connect (mapStateToProps, {setUserId}), withRouter, withAuthRedarect, getStatus, updateStatus)(ProfilesContainer)
+// export default compose( mapStateToProps, {setUserId, getStatus, updateStatus}, withRouter, withAuthRedarect) (ProfilesContainer)
+
+export default compose(connect (mapStateToProps, {setUserId,getStatus, updateStatus}), withRouter)(ProfilesContainer)
 

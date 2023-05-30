@@ -10,6 +10,7 @@ import Projects from './components/Projects/Projects';
 import Music from './components/Music/Music';
 import UsersContainer from './components/Users/UsersContainer';
 import IsYou from './components/Header/Login/IsYou/IsYou';
+import LoginForm from './components/LoginForm/LoginForm';
 
 const App = (props) => {
   return (
@@ -24,8 +25,6 @@ const App = (props) => {
                   store = {props.store}
                   />} />
 
-
-                <Route path='/profile' element={<ProfilesContainer />}/>
                 <Route path="/profile/:userId" element={<ProfilesContainer/>}/>
 
                 <Route path='/Messages/*' element={<MessagesContainer 
@@ -36,6 +35,7 @@ const App = (props) => {
                 <Route path='/Music' element={<Music />} />
                 <Route path='/Users' element={<UsersContainer />} />
                 <Route path='/IsYou' element={<IsYou></IsYou>}></Route>
+                <Route path='/login' element={<LoginForm/>}></Route>
               </Routes>
           </div>
         </div>

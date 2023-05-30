@@ -6,8 +6,8 @@ const Profiles =(props) =>{
         return <Preloader />
     }
 
-
     return(
+        
         <div>
             <img src={props.profile.photos.small } alt="err" />
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
