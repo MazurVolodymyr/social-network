@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Messages.module.css';
 import Dialogitem from './Dialogitem/Dialogitem';
 import Message from './Message/Message';
+import { Field, reduxForm } from 'redux-form';
 
 const Messages = (props) => {
 
@@ -9,15 +10,10 @@ const Messages = (props) => {
     
     let dialogsElements = state.dialogsData.map ( d => <Dialogitem id={d.id} key={d.id} name = {d.name}  />)
     let messagesElements = state.messagesData.map (e => <Message text= {e.text} key={e.id}/>)
-    let newMessagesBody = state.newMessagesBody;
 
-    let sendSMS = () =>{
-        props.sendMessage();
-    }
-    let onNewMessagesChange = (e) =>{
 
-        let body = e.target.value;
-        props.updateNewMessagesBody(body);
+    let addNewMessages = (value) =>{
+        props.sendMessage(value.newMessagesBody);
     }
 
     return (
@@ -30,14 +26,24 @@ const Messages = (props) => {
                 
                 <div className={style.messages}>
                     { messagesElements }
-                    <div>
-                        <div> <textarea value={newMessagesBody} onChange={onNewMessagesChange} ></textarea></div>
-                        <div><button onClick={ sendSMS }>send</button> </div>
-                    </div>
+                    <AddMesagesFormRedux onSubmit={addNewMessages}></AddMesagesFormRedux>
                 </div>
             </div>
         </div>
     )
 }
+
+const AddMesagesForm = (props) =>{
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component="textarea" name="newMessagesBody" placeholder='enter your message'/>
+                <button>send</button> 
+            </div>
+        </form>
+    )
+}
+
+const AddMesagesFormRedux = reduxForm({form: "dialogAddMesagesForm"})(AddMesagesForm)
 
 export default Messages;

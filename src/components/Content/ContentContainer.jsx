@@ -1,5 +1,5 @@
 
-import { addPostActionCreator, changePostBllActionCreator } from '../../redux/content-reducer';
+import { addPostActionCreator } from '../../redux/content-reducer';
 import Content from './Content';
 
 import { connect } from 'react-redux';
@@ -12,12 +12,8 @@ let mapStateToProps = (state) =>{
 }
 let mapDispatchToProps = (dispatch) =>{
     return{
-        changePostBLL: (text) => {
-            let action =  changePostBllActionCreator(text);
-                dispatch(action);
-        },
-        addPost: () =>{
-            dispatch( addPostActionCreator() )
+        addPost: (newPostText) =>{
+            dispatch( addPostActionCreator(newPostText) )
         },
     }
 }

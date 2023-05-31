@@ -2,7 +2,6 @@
 import { userAPI, profileAPI } from "../API/api"
 
 const ADD_POST = 'ADD_POST'
-const CHANGE_POST_BLL = 'CHANGE_POST_BLL'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 const SET_STATUS = 'SET_STATUS'
@@ -13,7 +12,6 @@ let initialState = {
         { id: 2, post: "heey", countLikes: 11},
         { id: 3, post: "wrrrr", countLikes: 6},
     ],
-    newTextPost: ' ',
     profile: null,
     status: ""
 
@@ -25,7 +23,7 @@ const contentReducer = (state = initialState, action) =>{
         case ADD_POST:{
             let newPost = {
                 id: 2,
-                post: state.newTextPost,
+                post: action.newPostText,
                 countLikes: 0,
             };
 
@@ -33,12 +31,6 @@ const contentReducer = (state = initialState, action) =>{
                 ...state,
                 posts: [...state.posts, newPost],
                 newTextPost: '',
-            }
-        }
-        case CHANGE_POST_BLL: {
-            return{
-                ...state,
-                newTextPost: action.newText,
             }
         }
         case SET_USER_PROFILE: {
@@ -53,15 +45,9 @@ const contentReducer = (state = initialState, action) =>{
 }
 
 // this export use user of UI
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostText) => {
     return {
-        type: ADD_POST,
-    }
-}
-export const changePostBllActionCreator = (text) => {
-    return {
-        type: CHANGE_POST_BLL,
-        newText: text,
+        type: ADD_POST, newPostText
     }
 }
 //

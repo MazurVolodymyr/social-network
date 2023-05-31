@@ -1,4 +1,3 @@
-const NEW_MESSAGE = 'NEW_MESSAGE'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let initialState = {
@@ -16,23 +15,16 @@ let initialState = {
         { id: 4, text : "F**k you"},
         { id: 5, text : "HEEEEY"},
     ],
-    newMessagesBody: '',
 }
 
 const messagesReducer = (state = initialState, action) =>{
 
 
     switch(action.type){
-        case NEW_MESSAGE:
-            return{
-                ...state,
-                newMessagesBody: action.body,
-            };
         case SEND_MESSAGE:
-            let body = state.newMessagesBody;
+            let body = action.newMessagesBody;
             return{
                 ...state,
-                newMessagesBody: '',
                 messagesData: [...state.messagesData,{id:6, text : body}]
             }
 
@@ -41,15 +33,9 @@ const messagesReducer = (state = initialState, action) =>{
     }
 }
 // this export use user of UI
-export const sendMessageCreator = () =>{
+export const sendMessageCreator = (newMessagesBody) =>{
     return {
-        type: SEND_MESSAGE,
-    }
-}
-export const updateNewMessagesBodyCreator = (body) =>{
-    return{
-        type: NEW_MESSAGE,
-        body: body,
+        type: SEND_MESSAGE, newMessagesBody
     }
 }
 //
