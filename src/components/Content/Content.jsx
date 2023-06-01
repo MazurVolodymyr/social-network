@@ -4,7 +4,9 @@ import Post from './Post/Posts';
 
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { Field, reduxForm } from 'redux-form';
+import { required, maxLengthCreator } from '../../utils/validators/validators';
 
+import { Textarea } from '../common/FormControls/FormControls';
 const Content = (props) =>{
 
     
@@ -28,7 +30,7 @@ const Content = (props) =>{
 const AddNewPostForm = (props) =>{
     return(
         <form onSubmit={props.handleSubmit}>
-            <Field component={"textarea"} name='newPostText'/>
+            <Field component={Textarea} name='newPostText' validate={[required, maxLengthCreator(20)]} placeholder='post messages'/>
             <button>Add post</button>
         </form>
     )
