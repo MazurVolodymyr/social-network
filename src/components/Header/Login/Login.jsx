@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import React from "react"
 
-
-
 const Login = (props) =>{
     return(
         <div> 
-            { props.isAuth ? props.login : <Link to={'/login'}> Login </Link> }
+            { props.isAuth 
+                ? <div>{props.login} <button onClick={props.logout}>log out</button></div> 
+                : <Link to={'/login'}> Login </Link> 
+            }
         </div>
     )
 }

@@ -27,14 +27,20 @@ class ProfilesContainer extends React.Component  {
     
     componentDidMount(){
         let userId = this.props.router.params.userId;
+        if(!userId){
+            userId = this.props.autirizerUserId
+        }
         this.props.setUserId(userId)
-
         this.props.getStatus(userId)
     }
 
     render(){
         return(
-            <Profiles {...this.props}/> 
+            <Profiles {...this.props}
+                profile={this.props.profile}
+                status={this.props.status}
+                updateStatus={this.props.updateStatus}
+            /> 
         )
     }
 } 
@@ -43,7 +49,8 @@ class ProfilesContainer extends React.Component  {
 let mapStateToProps = (state) =>({
     profile: state.contentPage.profile,
     isAuth: state.auth.isAuth,
-    status: state.contentPage.status
+    status: state.contentPage.status,
+    autirizerUserId: state.userId, 
 })
 
 // export default compose( mapStateToProps, {setUserId, getStatus, updateStatus}, withRouter, withAuthRedarect) (ProfilesContainer)
