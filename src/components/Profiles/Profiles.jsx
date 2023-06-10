@@ -1,5 +1,6 @@
 import Preloader from "../common/Preloader/Preloader"
-import ProfileStatus from "../Content/ProfileStatus/ProfileStatus"
+import ProfileStatusHook from "../Content/ProfileStatus/ProfileStatusHook"
+
 const Profiles =(props) =>{
 
     if(!props.profile){
@@ -10,7 +11,7 @@ const Profiles =(props) =>{
         
         <div>
             <img src={props.profile.photos.small } alt="err" />
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+            <ProfileStatusHook status={props.status} updateStatus={props.updateStatus} />
         </div>
     )
 }

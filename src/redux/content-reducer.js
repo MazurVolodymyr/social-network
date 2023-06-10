@@ -13,7 +13,7 @@ let initialState = {
         { id: 3, post: "wrrrr", countLikes: 6},
     ],
     profile: null,
-    status: ""
+    status: " "
 
 }
 

@@ -18,10 +18,10 @@ class ProfileStatus extends React.Component {
     // }
 
     toggleEditMode = () => {
-        /* if (!this.state.editMode) {
+         if (!this.state.editMode) {
             this.setState({ editMode: true });
         } else this.setState({ editMode: false });
-        this.props.updateStatus(this.state.status); */
+        this.props.updateStatus(this.state.status);
         console.log(this.state);
     };
     onStatusChange =(e) => {

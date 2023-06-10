@@ -2,11 +2,12 @@ import style from './Content.module.css';
 import React from 'react';
 import Post from './Post/Posts';
 
-import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { Field, reduxForm } from 'redux-form';
 import { required, maxLengthCreator } from '../../utils/validators/validators';
 
 import { Textarea } from '../common/FormControls/FormControls';
+
+import ProfileStatusHook from './ProfileStatus/ProfileStatusHook';
 const Content = (props) =>{
 
     
@@ -19,7 +20,7 @@ const Content = (props) =>{
     return(
         <div className={style.content_style}>
             <div> 
-                <ProfileStatus></ProfileStatus>
+                <ProfileStatusHook status={props.status} updateStatus={props.updateStatus}></ProfileStatusHook>
                 <AddNewPostFormReduxForm onSubmit={onAddPost}></AddNewPostFormReduxForm>
                 { postsElement }
             </div>
